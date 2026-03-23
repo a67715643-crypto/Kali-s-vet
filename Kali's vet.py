@@ -7,8 +7,6 @@ password = os.getenv('ADMIN_VET_PASSWORD')
 l = input('login = ')
 p = input('password = ')
 
-
-
 if l == login:
     if p == password:
         l = input(login)
@@ -52,12 +50,18 @@ cursor.execute("""
         name text,
         age integer
         
-INSERT INTO students (id, name, age) VALUES
+INSERT INTO pets (name, id, age) VALUES
 (1, 'Kali', "kalisto@gmail.com", 1,5)
 (2, 'Cat', "cat@gmail.com", ?)
-(2, 'Maru', "maruthecatinbox@gmail.com", 3)
+(3, 'Maru', "maruthecatinbox@gmail.com", 3)
     ');
 """)
+
+cursor.execute("select * from pets")
+connection.commit()
+
+for pet in cursor.fetchall():
+    print(pet)
 
 cursor.execute("""
     create table IF NOT EXISTS petfood ('
@@ -67,16 +71,39 @@ cursor.execute("""
         keycode text,
         cost integer
 
-INSERT INTO students (name, weight, taste, keycode, cost) VALUES
+INSERT INTO petfood (name, weight, taste, keycode, cost) VALUES
 (1, 'Carnilove', "500", 'salmon', 48168194, 495)
 (2, 'Carnilove', "100", 'duck', 472857108, 195)
 (3, 'Carnilove', "100", 'salmon', 3003818, 195)
-(3, 'Carnilove', "150", 'salmon', 41179829, 95)
+(4, 'Carnilove', "150", 'salmon', 41179829, 95)
     ');
 """)
 
-print(cursor.execute)
-
+cursor.execute("select * from petfood")
 connection.commit()
+
+for petfood in cursor.fetchall():
+    print(petfood)
+
+cursor.execute("""
+    create table IF NOT EXISTS toys ('
+        name text,
+        keycode text,
+        cost integer
+
+INSERT INTO petfood (name, keycode, cost) VALUES
+(1, 'jumping fish', 552573297, 650)
+(2, 'stick with a star', 3479499110, 150)
+(3, 'plush sausage', 3003818237, 250)
+    ');
+""")
+
+cursor.execute("select * from toys")
+connection.commit()
+
+for toy in cursor.fetchall():
+    print(toy)
+
+print(cursor.execute)
 
 connection.close()
