@@ -1,3 +1,9 @@
+import colorama
+colorama.init()
+
+print(colorama.Fore.BLACK)
+print(colorama.Back.LIGHTWHITE_EX)
+
 import os
 import getenv
 
@@ -12,31 +18,18 @@ if l == login:
         l = input(login)
         p = input(password)
 
-import colorama
-colorama.init()
-
-print(colorama.Fore.BLACK)
-print(colorama.Back.LIGHTWHITE_EX)
+print("""         Kali's vet 
+        8:00 - 20:00""")
 
 class Cat:
     def __init__(self, name):
         self.name = name
     def make_sound(self):
-        print('eee')
+        print("Kali says eee")
 
-kali = Cat('kali')
+kali = Cat('Kali')
 print(kali.name)
 kali.make_sound()
-
-class Dog:
-    def __init__(self, name):
-        self.name = name
-    def make_sound(self):
-        print('levretka is coming soon!')
-
-levretka = Dog('levretka')
-print(levretka.name)
-levretka.make_sound()
 
 import sqlite3 as sl3
 
@@ -45,19 +38,19 @@ connection = sl3.connect("vet.sl3")
 cursor = connection.cursor()
 
 cursor.execute("""
-    create table IF NOT EXISTS pets ('
+    create table IF NOT EXISTS visitors ('
         id integer primary key,
         name text,
         age integer
         
-INSERT INTO pets (name, id, age) VALUES
+INSERT INTO visitors (name, id, age) VALUES
 (1, 'Kali', "kalisto@gmail.com", 1,5)
 (2, 'Cat', "cat@gmail.com", ?)
 (3, 'Maru', "maruthecatinbox@gmail.com", 3)
     ');
 """)
 
-cursor.execute("select * from pets")
+cursor.execute("select * from visitors")
 connection.commit()
 
 for pet in cursor.fetchall():
@@ -91,7 +84,7 @@ cursor.execute("""
         keycode text,
         cost integer
 
-INSERT INTO petfood (name, keycode, cost) VALUES
+INSERT INTO toys (name, keycode, cost) VALUES
 (1, 'jumping fish', 552573297, 650)
 (2, 'stick with a star', 3479499110, 150)
 (3, 'plush sausage', 3003818237, 250)
@@ -105,5 +98,23 @@ for toy in cursor.fetchall():
     print(toy)
 
 print(cursor.execute)
+
+print('base data')
+
+input('enter the base data: ')
+
+print("""          VISITORS
+(1, 'Kali', "kalisto@gmail.com", 1,5)
+(2, 'Cat', "cat@gmail.com", ?)
+(3, 'Maru', "maruthecatinbox@gmail.com", 3)
+          PETFOOD
+(1, 'Carnilove', "500", 'salmon', 48168194, 495)
+(2, 'Carnilove', "100", 'duck', 472857108, 195)
+(3, 'Carnilove', "100", 'salmon', 3003818, 195)
+(4, 'Carnilove', "150", 'salmon', 41179829, 95),
+          TOYS
+(1, 'jumping fish', 552573297, 650)
+(2, 'stick with a star', 3479499110, 150)
+(3, 'plush sausage', 3003818237, 250)""")
 
 connection.close()
